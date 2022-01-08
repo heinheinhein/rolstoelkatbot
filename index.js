@@ -18,8 +18,9 @@ for (const file of commandFiles) {
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
-    console.log(`${client.user.tag} is er klaar voor`);
     client.user.setActivity('rolstoelkat 👍');
+    const time = new Date(Date.now()).toLocaleTimeString();
+    console.log(`${time} ${client.user.tag} is er klaar voor`);
 });
 
 async function sleep(ms) {
@@ -35,6 +36,9 @@ client.on('interactionCreate', async interaction => {
 
     if (!command) return;
 
+    const time = new Date(Date.now()).toLocaleTimeString();
+    console.log(`${time} ${interaction.user.tag}: /${interaction.commandName}`);
+
     try {
         await command.execute(interaction);
     } catch (error) {
@@ -45,6 +49,8 @@ client.on('interactionCreate', async interaction => {
 
 client.on('messageCreate', async message => {
     if (message.author.id === clientID) return;
+
+    const time = new Date(Date.now()).toLocaleTimeString();
 
     const regex = /[\/1!?.]/g; // god ik haat regex
     let messageContent = message.content.toLowerCase().replace(regex,'');
@@ -76,12 +82,14 @@ client.on('messageCreate', async message => {
     } else {
         // klop klop begin
         if (message.content === 'klop klop') {
+            console.log(`${time} ${message.author.tag}: klop klop`);
             await message.channel.sendTyping();
             await message.channel.send('wie is daar');
         }
 
         // rolstoelkat
         if (messageContent.indexOf('rolstoelkat') >= 0) {
+            console.log(`${time} ${message.author.tag}: rolstoelkat`);
             await message.channel.sendTyping();
             const rolstoelkatEmbed = new MessageEmbed()
                 .setColor('#FF6B00')
@@ -93,6 +101,7 @@ client.on('messageCreate', async message => {
 
         // katstoelrol
         if (messageContent.indexOf('katstoelrol') >= 0) {
+            console.log(`${time} ${message.author.tag}: katstoelrol`);
             await message.channel.sendTyping();
             const rolstoelkatEmbed = new MessageEmbed()
                 .setColor('#FF6B00')
@@ -102,6 +111,7 @@ client.on('messageCreate', async message => {
             await message.channel.send({embeds: [rolstoelkatEmbed]});
         } else {
             if (messageContent.indexOf('takleotslor') >= 0) {
+                console.log(`${time} ${message.author.tag}: takleotslor`);
                 await message.channel.sendTyping();
                 const rolstoelkatEmbed = new MessageEmbed()
                     .setColor('#FF6B00')
@@ -112,36 +122,49 @@ client.on('messageCreate', async message => {
             }
         }
 
+        if (message.content.indexOf('<@!929381729007988807>') >= 0) {
+            console.log(`${time} ${message.author.tag}: @rolstoelkat`);
+            await message.channel.sendTyping();
+            await message.channel.send('je weet hoe die gaat');
+        }
+
         // wat etc
         if (messageContent.endsWith('wat')) {
+            console.log(`${time} ${message.author.tag}: wat`);
             await message.channel.sendTyping();
             await message.reply("patat");
         }
         if (messageContent.endsWith('wie')) {
+            console.log(`${time} ${message.author.tag}: wie`);
             await message.channel.sendTyping();
             await message.reply("kiwi");
         }
         if (messageContent.endsWith('hoe')) {
+            console.log(`${time} ${message.author.tag}: hoe`);
             await message.channel.sendTyping();
             await message.reply("roekoe");
         }
         if (messageContent.endsWith('waarbij')) {
+            console.log(`${time} ${message.author.tag}: waarbij`);
             await message.channel.sendTyping();
             await message.reply("aardbei");
         }
         if (messageContent.endsWith('waarom')) {
+            console.log(`${time} ${message.author.tag}: waarom`);
             await message.channel.sendTyping();
             await message.reply("daarom");
         }
         if (messageContent.endsWith('helaas')) {
+            console.log(`${time} ${message.author.tag}: helaas`);
             await message.channel.sendTyping();
             await message.reply("pindakaas");
         }
 
         // :thinking:
         if (messageContent === '🤔') {
-            const thinkingArray = ['⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔:clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔:clap_tone5:🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫⚫⚫🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊'];
+            console.log(`${time} ${message.author.tag}: :thinking:`);
 
+            const thinkingArray = ['⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔:clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔:clap_tone5:🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫⚫⚫🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊'];
             let thinkingMessages = [];
 
             for (let i = 0; i < thinkingArray.length; i++) {
@@ -155,6 +178,7 @@ client.on('messageCreate', async message => {
 
         // soep
         if (messageContent.indexOf('soep') >= 0) {
+            console.log(`${time} ${message.author.tag}: soep`);
             await message.channel.sendTyping();
             const soep = 'media/soep.mp4';
             await message.channel.send({
@@ -167,11 +191,12 @@ client.on('messageCreate', async message => {
 
         // kipnuggets
         if (messageContent.indexOf('kipnuggets') >= 0 || messageContent.indexOf('rapper sjors') >= 0) {
+            console.log(`${time} ${message.author.tag}: kipnuggets`);
             await message.channel.sendTyping();
-            const soep = 'media/kipnuggets.mp4';
+            const kipnuggets = 'media/kipnuggets.mp4';
             await message.channel.send({
                 files: [{
-                    attachment: soep,
+                    attachment: kipnuggets,
                     name: 'kipnuggets.mp4'
                 }]
             })
@@ -179,11 +204,12 @@ client.on('messageCreate', async message => {
 
         // aardbei
         if (messageContent.indexOf('aardbei') >= 0 || messageContent.indexOf('ali b') >= 0) {
+            console.log(`${time} ${message.author.tag}: aardbei`);
             await message.channel.sendTyping();
-            const soep = 'media/aardbei.mp4';
+            const aardbei = 'media/aardbei.mp4';
             await message.channel.send({
                 files: [{
-                    attachment: soep,
+                    attachment: aardbei,
                     name: 'aardbei.mp4'
                 }]
             })
