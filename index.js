@@ -122,7 +122,7 @@ client.on('messageCreate', async message => {
             }
         }
 
-        if (message.content.indexOf('<@!929381729007988807>') >= 0) {
+        if (message.content.indexOf(`<@!${clientID}>`) >= 0) {
             console.log(`${time} ${message.author.tag}: @rolstoelkat`);
             await message.channel.sendTyping();
             await message.channel.send('je weet hoe die gaat');
