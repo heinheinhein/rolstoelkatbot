@@ -46,12 +46,8 @@ client.on('interactionCreate', async interaction => {
 client.on('messageCreate', async message => {
     if (message.author.id === clientID) return;
 
-    message.content = message.content.toLowerCase();
-    message.content = message.content.replace('.', '');
-    message.content = message.content.replace('?', '');
-    message.content = message.content.replace('!', '');
-    message.content = message.content.replace('/', '');
-    message.content = message.content.replace('1', '');
+    const regex = /[\/1!?.]/g; // god ik haat regex
+    let messageContent = message.content.toLowerCase().replace(regex,'');
 
     // kijken of klop klop bezig is
     const last4Messages = await message.channel.messages.fetch({limit: 4});
@@ -85,7 +81,7 @@ client.on('messageCreate', async message => {
         }
 
         // rolstoelkat
-        if (message.content.indexOf('rolstoelkat') >= 0) {
+        if (messageContent.indexOf('rolstoelkat') >= 0) {
             await message.channel.sendTyping();
             const rolstoelkatEmbed = new MessageEmbed()
                 .setColor('#FF6B00')
@@ -96,7 +92,7 @@ client.on('messageCreate', async message => {
         }
 
         // katstoelrol
-        if (message.content.indexOf('katstoelrol') >= 0) {
+        if (messageContent.indexOf('katstoelrol') >= 0) {
             await message.channel.sendTyping();
             const rolstoelkatEmbed = new MessageEmbed()
                 .setColor('#FF6B00')
@@ -105,7 +101,7 @@ client.on('messageCreate', async message => {
                 .setImage('http://www.krokanjer.nl/katstoelrol.gif')
             await message.channel.send({embeds: [rolstoelkatEmbed]});
         } else {
-            if (message.content.indexOf('takleotslor') >= 0) {
+            if (messageContent.indexOf('takleotslor') >= 0) {
                 await message.channel.sendTyping();
                 const rolstoelkatEmbed = new MessageEmbed()
                     .setColor('#FF6B00')
@@ -117,33 +113,33 @@ client.on('messageCreate', async message => {
         }
 
         // wat etc
-        if (message.content.endsWith('wat')) {
+        if (messageContent.endsWith('wat')) {
             await message.channel.sendTyping();
             await message.reply("patat");
         }
-        if (message.content.endsWith('wie')) {
+        if (messageContent.endsWith('wie')) {
             await message.channel.sendTyping();
             await message.reply("kiwi");
         }
-        if (message.content.endsWith('hoe')) {
+        if (messageContent.endsWith('hoe')) {
             await message.channel.sendTyping();
             await message.reply("roekoe");
         }
-        if (message.content.endsWith('waarbij')) {
+        if (messageContent.endsWith('waarbij')) {
             await message.channel.sendTyping();
             await message.reply("aardbei");
         }
-        if (message.content.endsWith('waarom')) {
+        if (messageContent.endsWith('waarom')) {
             await message.channel.sendTyping();
             await message.reply("daarom");
         }
-        if (message.content.endsWith('helaas')) {
+        if (messageContent.endsWith('helaas')) {
             await message.channel.sendTyping();
             await message.reply("pindakaas");
         }
 
         // :thinking:
-        if (message.content === '🤔') {
+        if (messageContent === '🤔') {
             const thinkingArray = ['⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔:clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔:clap_tone5:🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔:clap_tone5::clap_tone5::clap_tone5:🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫🤔🤔🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫🤔🤔🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫🤔🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫🤔🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫⚫⚫🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫🤔🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔', '⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔🤔🤔🤔🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🤔🤔\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊\n⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊'];
 
             let thinkingMessages = [];
@@ -158,7 +154,7 @@ client.on('messageCreate', async message => {
         }
 
         // soep
-        if (message.content.indexOf('soep') >= 0) {
+        if (messageContent.indexOf('soep') >= 0) {
             await message.channel.sendTyping();
             const soep = 'media/soep.mp4';
             await message.channel.send({
@@ -170,7 +166,7 @@ client.on('messageCreate', async message => {
         }
 
         // kipnuggets
-        if (message.content.indexOf('kipnuggets') >= 0 || message.content.indexOf('rapper sjors') >= 0) {
+        if (messageContent.indexOf('kipnuggets') >= 0 || messageContent.indexOf('rapper sjors') >= 0) {
             await message.channel.sendTyping();
             const soep = 'media/kipnuggets.mp4';
             await message.channel.send({
@@ -182,7 +178,7 @@ client.on('messageCreate', async message => {
         }
 
         // aardbei
-        if (message.content.indexOf('aardbei') >= 0 || message.content.indexOf('ali b') >= 0) {
+        if (messageContent.indexOf('aardbei') >= 0 || messageContent.indexOf('ali b') >= 0) {
             await message.channel.sendTyping();
             const soep = 'media/aardbei.mp4';
             await message.channel.send({
