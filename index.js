@@ -53,7 +53,7 @@ client.on('messageCreate', async message => {
     const time = new Date(Date.now()).toLocaleTimeString();
 
     const regex = /[\/1!?.]/g; // god ik haat regex
-    let messageContent = message.content.toLowerCase().replace(regex,'');
+    let messageContent = message.content.toLowerCase().replace(regex, '');
 
     // kijken of klop klop bezig is
     const last4Messages = await message.channel.messages.fetch({limit: 4});
@@ -122,6 +122,7 @@ client.on('messageCreate', async message => {
             }
         }
 
+        // @rolstoelkat
         if (message.content.indexOf(`<@!${clientID}>`) >= 0) {
             console.log(`${time} ${message.author.tag}: @rolstoelkat`);
             await message.channel.sendTyping();
@@ -149,10 +150,16 @@ client.on('messageCreate', async message => {
             await message.channel.sendTyping();
             await message.reply("aardbei");
         }
-        if (messageContent.endsWith('waarom')) {
-            console.log(`${time} ${message.author.tag}: waarom`);
+        if (messageContent.startsWith('waarom')) {
+            console.log(`${time} ${message.author.tag}: waarom niet?`);
             await message.channel.sendTyping();
-            await message.reply("daarom");
+            await message.reply("waarom niet?");
+        } else {
+            if (messageContent.endsWith('waarom')) {
+                console.log(`${time} ${message.author.tag}: waarom`);
+                await message.channel.sendTyping();
+                await message.reply("daarom");
+            }
         }
         if (messageContent.endsWith('helaas')) {
             console.log(`${time} ${message.author.tag}: helaas`);
