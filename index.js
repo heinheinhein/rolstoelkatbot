@@ -48,7 +48,7 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.on('messageCreate', async message => {
-    if (message.author.id === clientID) return;
+    if (message.author.id === clientID || message.author.bot) return;
 
     const time = new Date(Date.now()).toLocaleTimeString();
 
