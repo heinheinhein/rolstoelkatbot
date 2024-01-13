@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node deploy_commands.js && node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +22,11 @@
     "url": "https://github.com/heinheinhein/rolstoelkatbot/issues"
   },
   "homepage": "https://github.com/heinheinhein/rolstoelkatbot#readme",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@discordjs/voice": "^0.16.1",
+    "discord.js": "^14.14.1",
+    "ffmpeg-static": "^5.2.0",
+    "libsodium-wrappers": "^0.7.13"
+  }
 }
