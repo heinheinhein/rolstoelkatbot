@@ -1,0 +1,26 @@
+{
+  "name": "rolstoelkatbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heinheinhein/rolstoelkatbot.git"
+  },
+  "keywords": [
+    "rolstoelkat",
+    "discord",
+    "bot"
+  ],
+  "author": "heinheinhein",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heinheinhein/rolstoelkatbot/issues"
+  },
+  "homepage": "https://github.com/heinheinhein/rolstoelkatbot#readme",
+  "type": "module"
+}

@@ -1,0 +1,10 @@
+services:
+  rolstoelkatbot:
+    build: ghcr.io/heinheinhein/rolstoelkatbot
+    container_name: rolstoelkatbot
+    environment:
+      - TZ=Europe/Amsterdam
+      - DISCORD_TOKEN=1234567890
+      - DISCORD_APPLICATION_ID=1234567890
+      - UPTIME_KUMA_URL=https://uptime.example.com/api/push/1234567890 # optional
+    restart: unless-stopped
