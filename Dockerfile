@@ -13,4 +13,6 @@ RUN npm install
 
 COPY --chown=node:node ./src ./
 
+ENV NODE_ENV=production
+
 CMD [ "npm", "start" ]
