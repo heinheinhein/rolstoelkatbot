@@ -1,4 +1,5 @@
 import { REST, Routes } from 'discord.js';
+import logger from './logger.js';
 
 const discordToken = process.env.DISCORD_TOKEN,
     discordClientId = process.env.DISCORD_APPLICATION_ID;
@@ -21,11 +22,13 @@ const commands = [
 const rest = new REST({ version: '10' }).setToken(discordToken);
 
 try {
-    console.log('Started refreshing application (/) commands.');
+    logger.info({
+        type: 'refresh-commands',
+        commands: commands
+    }, `refreshing ${commands.length} application commands`);
 
     await rest.put(Routes.applicationCommands(discordClientId), { body: commands });
 
-    console.log('Successfully reloaded application (/) commands.');
 } catch (error) {
-    console.error(error);
+    logger.error(error);
 }

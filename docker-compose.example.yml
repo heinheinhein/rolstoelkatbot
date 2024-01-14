@@ -2,6 +2,8 @@ services:
   rolstoelkatbot:
     image: ghcr.io/heinheinhein/rolstoelkatbot
     container_name: rolstoelkatbot
+    volumes:
+      - ./logs:/home/node/app/logs
     environment:
       - TZ=Europe/Amsterdam
       - DISCORD_TOKEN=1234567890

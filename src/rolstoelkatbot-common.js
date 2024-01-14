@@ -5,6 +5,7 @@ import {
     createAudioResource,
     AudioPlayerStatus
 } from '@discordjs/voice';
+import logger from './logger.js';
 
 export {
     initializeRemoteMonitoring,
@@ -19,10 +20,11 @@ const discordClientId = process.env.DISCORD_APPLICATION_ID,
 
 
 function initializeRemoteMonitoring(client) {
-    console.log('starting uptimekuma interval');
+    logger.info({ type: 'start-application' }, 'starting uptime kuma interval');
 
     if (client.ws.status === 0 && client.ws.ping > 0) fetch(`${uptimeKumaURL}?status=up&msg=OK&ping=${client.ws.ping}`);
     setInterval(() => {
+        if (client.ws.ping > 999) logger.warn({ type: 'latency', ping: client.ws.ping}, `ping has exceeded 999ms, currently ${client.ws.ping}ms`);
         if (client.ws.status === 0 && client.ws.ping > 0) fetch(`${uptimeKumaURL}?status=up&msg=OK&ping=${client.ws.ping}`);
     }, 60e3);
 }
@@ -77,8 +79,6 @@ async function statusChanger(client) {
         'je bent een soepkip!',
     ];
 
-    console.log('changing status');
-
     await client.user.setPresence({
         activities: [{ name: randomItem(status) }],
         status: Math.random() < 0.05 ? 'dnd' : 'online'
@@ -89,7 +89,6 @@ async function statusChanger(client) {
 
 
 async function handleCommand(interaction) {
-    console.log('handling command');
 
     const commands = {
         'rolstoelkat': async interaction => {
@@ -107,7 +106,7 @@ async function handleCommand(interaction) {
     try {
         return commands[interaction.commandName](interaction);
     } catch (error) {
-        console.error('unable to handle command ', interaction.commandName, error);
+        logger.error(error);
     }
 }
 
@@ -133,8 +132,20 @@ async function handleMessage(recievedMessage) {
 
 async function reply(interaction, message, isReply = true) {
 
-    console.log('recieved', interaction.content || `/${interaction.commandName}`);
-    console.log('sending message', message);
+    logger.info({
+        type: interaction.author ? 'message' : 'command',
+        guild: {
+            id: interaction.guildId,
+            name: interaction.guild.name
+        },
+        user: {
+            id: interaction.author ? interaction.author.id : interaction.user.id,
+            username: interaction.author ? interaction.author.username : interaction.user.username,
+            globalName: interaction.author ? interaction.author.globalName : interaction.user.globalName
+        },
+        content: interaction.author ? interaction.content : interaction.commandName,
+        reply: message
+    }, `${interaction.guild.name}, ${interaction.author ? interaction.author.username : interaction.user.username}: ${interaction.author ? interaction.content : '/' + interaction.commandName}`);
 
     await interaction.channel.sendTyping();
 
@@ -229,7 +240,17 @@ function playSoundEffect(interaction, file) {
 
     const channel = interaction.member.voice.channel;
 
-    console.log('joining voicechannel', channel.name);
+    logger.info({
+        type: 'voice-connect',
+        guild: {
+            id: interaction.guildId,
+            name: interaction.guild.name
+        },
+        channel: {
+            id: channel.id,
+            name: channel.name
+        }
+    }, `joining voice channel ${channel.name} in ${interaction.guild.name}`);
 
     const connection = joinVoiceChannel({
         channelId: channel.id,
@@ -237,17 +258,41 @@ function playSoundEffect(interaction, file) {
         adapterCreator: channel.guild.voiceAdapterCreator
     });
 
-    const player = createAudioPlayer();
 
-    console.log('playing file', file);
+    logger.info({
+        type: 'voice-play',
+        guild: {
+            id: interaction.guildId,
+            name: interaction.guild.name
+        },
+        channel: {
+            id: channel.id,
+            name: channel.name
+        },
+        file: file
+    }, `playing audio file ${file}`);
+
+    const player = createAudioPlayer();
     const resource = createAudioResource(file);
     player.play(resource);
     connection.subscribe(player);
 
 
     player.on(AudioPlayerStatus.Idle, () => {
+
+        logger.info({
+            type: 'voice-disconnect',
+            guild: {
+                id: interaction.guildId,
+                name: interaction.guild.name
+            },
+            channel: {
+                id: channel.id,
+                name: channel.name
+            }
+        }, `leaving voice channel ${channel.name} in ${interaction.guild.name}`);
+
         connection.destroy();
-        console.log('disconnected from voicechannel', channel.name);
     });
 }
 
