@@ -12,3 +12,5 @@ als je deze bot zelf wilt hosten:
 1. kopieer de docker-compose.example.yml en hernoem deze naar docker-compose.yml
 1. verander de environment variabelen
 1. `docker compose up`
+
+[![Create and publish a Docker image](https://github.com/heinheinhein/rolstoelkatbot/actions/workflows/docker-image.yml/badge.svg)](https://github.com/heinheinhein/rolstoelkatbot/actions/workflows/docker-image.yml)
