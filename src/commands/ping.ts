@@ -11,23 +11,21 @@ export class PingCommand extends Command {
         registry.registerChatInputCommand((builder) => {
             return builder
                 .setName('ping')
-                .setDescription('Ping bot to see if it is alive');
+                .setDescription('ping me dan');
         });
     }
 
     async chatInputRun(interaction: Interaction): Promise<Message | void> {
         if (!interaction.isRepliable()) return;
 
-        await interaction.reply({ content: `Ping?`, flags: [MessageFlags.Ephemeral] });
+        await interaction.reply({ content: "aan het pingen...", flags: [MessageFlags.Ephemeral] });
         const message = await interaction.fetchReply();
-
 
         if (isMessageInstance(message)) {
             const diff = message.createdTimestamp - interaction.createdTimestamp;
-            const ping = Math.round(this.container.client.ws.ping);
-            return interaction.editReply(`Pong 🏓! (Round trip took: ${diff}ms. Heartbeat: ${ping}ms.)`);
+            return interaction.editReply(`ping is ${diff}ms, cool beans`);
         }
 
-        return interaction.editReply('Failed to retrieve ping :(');
+        return interaction.editReply('pingen is niet gelukt :(');
     }
 }
