@@ -1,5 +1,5 @@
-import { ApplicationCommandRegistry, Command, CommandOptions } from '@sapphire/framework';
-import { Interaction, Message, MessageFlags } from 'discord.js';
+import { ApplicationCommandRegistry, Command, CommandOptions } from "@sapphire/framework";
+import { Interaction, Message, MessageFlags } from "discord.js";
 
 export class InviteCommand extends Command {
     constructor(context: Command.LoaderContext, options: CommandOptions | undefined) {
@@ -9,8 +9,8 @@ export class InviteCommand extends Command {
     registerApplicationCommands(registry: ApplicationCommandRegistry) {
         registry.registerChatInputCommand((builder) => {
             return builder
-                .setName('invite')
-                .setDescription('voeg rolstoelkatbot toe aan een andere server');
+                .setName("invite")
+                .setDescription("voeg rolstoelkatbot toe aan een andere server");
         });
     }
 

@@ -1,5 +1,5 @@
-import { ApplicationCommandRegistry, Command, CommandOptions } from '@sapphire/framework';
-import { ChatInputCommandInteraction, Message, MessageFlags } from 'discord.js';
+import { ApplicationCommandRegistry, Command, CommandOptions } from "@sapphire/framework";
+import { ChatInputCommandInteraction, Message, MessageFlags } from "discord.js";
 
 export class RolstoelkatCommand extends Command {
     constructor(context: Command.LoaderContext, options: CommandOptions | undefined) {
@@ -8,9 +8,7 @@ export class RolstoelkatCommand extends Command {
 
     registerApplicationCommands(registry: ApplicationCommandRegistry) {
         registry.registerChatInputCommand((builder) => {
-            return builder
-                .setName('rolstoelkat')
-                .setDescription('rolstoelkat');
+            return builder.setName("rolstoelkat").setDescription("rolstoelkat");
         });
     }
 
@@ -18,7 +16,7 @@ export class RolstoelkatCommand extends Command {
         if (!interaction.isRepliable()) return;
 
         if (interaction.channel?.isSendable()) interaction.channel.sendTyping();
-        
+
         await interaction.reply({ files: ["src/media/rolstoelkat.gif"] });
     }
 }

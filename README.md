@@ -6,7 +6,7 @@ http://bot.rolstoelkat.nl
 
 ## installatie
 
-als je deze bot zelf wilt hosten: 
+als je deze bot zelf wilt hosten:
 
 1. installeer docker
 1. kopieer de docker-compose.example.yml en hernoem deze naar docker-compose.yml

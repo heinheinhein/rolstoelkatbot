@@ -1,12 +1,12 @@
-import { SapphireClient } from '@sapphire/framework';
-import { GatewayIntentBits } from 'discord.js';
+import { SapphireClient } from "@sapphire/framework";
+import { GatewayIntentBits } from "discord.js";
 
 const intents = [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildVoiceStates
-]
+];
 
 const client = new SapphireClient({
     intents: intents,

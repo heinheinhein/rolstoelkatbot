@@ -1,6 +1,6 @@
-import { ApplicationCommandRegistry, Command, CommandOptions } from '@sapphire/framework';
-import { isMessageInstance } from '@sapphire/discord.js-utilities';
-import { Interaction, Message, MessageFlags } from 'discord.js';
+import { ApplicationCommandRegistry, Command, CommandOptions } from "@sapphire/framework";
+import { isMessageInstance } from "@sapphire/discord.js-utilities";
+import { Interaction, Message, MessageFlags } from "discord.js";
 
 export class PingCommand extends Command {
     constructor(context: Command.LoaderContext, options: CommandOptions | undefined) {
@@ -9,9 +9,7 @@ export class PingCommand extends Command {
 
     registerApplicationCommands(registry: ApplicationCommandRegistry) {
         registry.registerChatInputCommand((builder) => {
-            return builder
-                .setName('ping')
-                .setDescription('ping me dan');
+            return builder.setName("ping").setDescription("ping me dan");
         });
     }
 
@@ -26,6 +24,6 @@ export class PingCommand extends Command {
             return interaction.editReply(`ping is ${diff}ms, cool beans`);
         }
 
-        return interaction.editReply('pingen is niet gelukt :(');
+        return interaction.editReply("pingen is niet gelukt :(");
     }
 }
