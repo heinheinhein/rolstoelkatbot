@@ -10,7 +10,8 @@ const intents = [
 
 const client = new SapphireClient({
     intents: intents,
-    loadMessageCommandListeners: true
+    loadMessageCommandListeners: true,
+    typing: true
 });
 
 if (!process.env.DISCORD_BOT_TOKEN) throw new Error("DISCORD_BOT_TOKEN not defined in environment");
