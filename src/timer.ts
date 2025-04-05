@@ -25,7 +25,7 @@ export function startStatusChanger(client: Client) {
         "wie dit leest is gek",
         "wie dit leest is te gek",
         "wie dit leest is een soepkip",
-        "voor maar €12,99 kun jij je eigen officiële rolstoelkat mok hebben! 👉 rolstoelkat.nl",
+        "voor maar €13,99 kun jij je eigen officiële rolstoelkat mok hebben! 👉 rolstoelkat.nl",
         "✅ Ik ben geen robot",
         `aaaaaaa${"A".repeat(Math.random() * 25)}`,
         "soep",
