@@ -17,6 +17,6 @@ export class RolstoelkatCommand extends Command {
 
         if (interaction.channel?.isSendable()) interaction.channel.sendTyping();
 
-        await interaction.reply({ files: ["src/media/rolstoelkat.gif"] });
+        await interaction.reply({ files: ["./media/rolstoelkat.gif"] });
     }
 }

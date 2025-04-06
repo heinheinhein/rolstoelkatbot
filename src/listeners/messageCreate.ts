@@ -53,7 +53,7 @@ export class ReadyListener extends Listener {
                 });
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/sjors/pindakaas.mp4"] }
+                    messageOptions: { files: ["./media/sjors/pindakaas.mp4"] }
                 });
             }
         },
@@ -76,8 +76,8 @@ export class ReadyListener extends Listener {
                     messageOptions: {
                         files: [
                             Math.random() < 0.05
-                                ? "./src/media/rolstoelkat_2d.gif"
-                                : "./src/media/rolstoelkat.gif"
+                                ? "./media/rolstoelkat_2d.gif"
+                                : "./media/rolstoelkat.gif"
                         ]
                     }
                 })
@@ -87,7 +87,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/katstoelrol.gif"] }
+                    messageOptions: { files: ["./media/katstoelrol.gif"] }
                 })
         },
         {
@@ -97,9 +97,9 @@ export class ReadyListener extends Listener {
             do: (message) => {
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/soep.mp4"] }
+                    messageOptions: { files: ["./media/soep.mp4"] }
                 });
-                this.playSound(message, "./src/media/soep.ogg");
+                this.playSound(message, "./media/soep.ogg");
             }
         },
         {
@@ -107,7 +107,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/lubach.mp4"] }
+                    messageOptions: { files: ["./media/lubach.mp4"] }
                 })
         },
         {
@@ -115,7 +115,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/aardbei.mp4"] }
+                    messageOptions: { files: ["./media/aardbei.mp4"] }
                 })
         },
         {
@@ -123,7 +123,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: [randomFileFromFolder("./src/media/rob-trip")] }
+                    messageOptions: { files: [randomFileFromFolder("./media/rob-trip")] }
                 })
         },
         {
@@ -131,7 +131,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: [randomFileFromFolder("./src/media/henry-winkler")] }
+                    messageOptions: { files: [randomFileFromFolder("./media/henry-winkler")] }
                 })
         },
         {
@@ -142,7 +142,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/rik.jpg"] }
+                    messageOptions: { files: ["./media/rik.jpg"] }
                 })
         },
         {
@@ -150,7 +150,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/frank.mp4"] }
+                    messageOptions: { files: ["./media/frank.mp4"] }
                 })
         },
         {
@@ -158,7 +158,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/ulp.mp4"] }
+                    messageOptions: { files: ["./media/ulp.mp4"] }
                 })
         },
         {
@@ -169,9 +169,9 @@ export class ReadyListener extends Listener {
             do: (message) => {
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/soepkip.webm"] }
+                    messageOptions: { files: ["./media/soepkip.webm"] }
                 });
-                this.playSound(message, "./src/media/soepkip.ogg");
+                this.playSound(message, "./media/soepkip.ogg");
             }
         },
         {
@@ -179,7 +179,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/lange_ei.jpg"] }
+                    messageOptions: { files: ["./media/lange_ei.jpg"] }
                 })
         },
         {
@@ -187,7 +187,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: [randomFileFromFolder("./src/media/sjors")] }
+                    messageOptions: { files: [randomFileFromFolder("./media/sjors")] }
                 })
         },
         {
@@ -195,7 +195,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/sjors/kipnuggets.mp4"] }
+                    messageOptions: { files: ["./media/sjors/kipnuggets.mp4"] }
                 })
         },
         {
@@ -203,7 +203,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/sjors/pindakaas.mp4"] }
+                    messageOptions: { files: ["./media/sjors/pindakaas.mp4"] }
                 })
         },
         {
@@ -212,7 +212,7 @@ export class ReadyListener extends Listener {
             do: (message) =>
                 this.reply({
                     interaction: message,
-                    messageOptions: { files: ["./src/media/sjors/pelikaan.mp4"] }
+                    messageOptions: { files: ["./media/sjors/pelikaan.mp4"] }
                 })
         }
     ];
