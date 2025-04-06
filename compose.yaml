@@ -1,0 +1,8 @@
+services:
+  bot:
+    image: ghcr.io/heinheinhein/rolstoelkatbot
+    environment:
+      - TZ=Europe/Amsterdam
+      - DISCORD_TOKEN=1234567890
+      - HEARTBEAT_URL=https://example.com/status/rolstoelkatbot # optional, is called every minute if application is up
+    restart: unless-stopped
