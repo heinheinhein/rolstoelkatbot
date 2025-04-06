@@ -1,5 +1,5 @@
 import { TimerManager } from "@sapphire/time-utilities";
-import { ActivityType, Client } from "discord.js";
+import { ActivityType, Client, Status } from "discord.js";
 import { randomItem } from "./random.js";
 
 export function startStatusChanger(client: Client) {
@@ -52,7 +52,8 @@ export function startStatusChanger(client: Client) {
         "uuuuua",
         "aaaaau",
         "kaart.rolstoelkat.nl",
-        "going global"
+        "going global",
+        "mr worldwide"
     ];
 
     client.user?.setPresence({
@@ -66,4 +67,21 @@ export function startStatusChanger(client: Client) {
             activities: [{ name: randomItem(status), type: ActivityType.Custom }]
         });
     }, 3600e3);
+}
+
+export async function startHeartbeat(client: Client) {
+    if (process.env.HEARTBEAT_URL) {
+        await hearbeat(client);
+        TimerManager.setInterval(hearbeat, 60e3, client);
+    }
+}
+
+async function hearbeat(client: Client) {
+    if (client.ws.status === Status.Ready) {
+        try {
+            await fetch(`${process.env.HEARTBEAT_URL}?status=up&msg=OK&ping=${client.ws.ping}`);
+        } catch (e) {
+            client.logger.error("Could not ping heartbeat URL", e);
+        }
+    }
 }
